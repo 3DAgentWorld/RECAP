@@ -1,0 +1,362 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f6f8fc">
+  <meta name="description" content="RECAP builds persistent 3D semantic scene graphs from compact vision-language observations through Entity Consolidation and Relation Belief Fusion.">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="RECAP — Building 3D Semantic Scene Graphs">
+  <meta property="og:description" content="Relational Evidence Capture and Pooling: from open-vocabulary observations to persistent scene memory and language-based target selection.">
+  <meta property="og:url" content="https://3dagentworld.github.io/RECAP/">
+  <meta property="og:image" content="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure1-overview.png">
+  <link rel="canonical" href="https://3dagentworld.github.io/RECAP/">
+  <title>RECAP: Building 3D Semantic Scene Graphs with Relational Evidence Capture and Pooling</title>
+  <style>
+    :root { color-scheme: light; --ink: #1c263c; --muted: #58657b; --blue: #3459b8; --purple: #7351a5; --line: #dce3ef; --soft: #f6f8fc; --width: 1160px; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 100px; }
+    body { margin: 0; color: var(--ink); background: #fff; font: 17px/1.75 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; -webkit-font-smoothing: antialiased; }
+    a { color: var(--blue); text-underline-offset: 4px; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible, summary:focus-visible, [tabindex]:focus-visible { outline: 3px solid #a55313; outline-offset: 5px; }
+    .wrap { width: min(var(--width), calc(100% - 64px)); margin-inline: auto; }
+    .skip-link { position: absolute; top: -100px; left: 20px; z-index: 20; background: #fff; padding: 10px 16px; }
+    .skip-link:focus { top: 12px; }
+    .site-header { position: sticky; top: 0; z-index: 10; border-bottom: 1px solid var(--line); background: rgba(255,255,255,.96); }
+    .nav { display: flex; align-items: center; justify-content: space-between; min-height: 70px; gap: 24px; }
+    .brand { font-size: 19px; font-weight: 800; letter-spacing: -.6px; text-decoration: none; color: var(--ink); }
+    .brand::before { content: ""; display: inline-block; width: 10px; height: 10px; margin-right: 11px; border-radius: 50%; background: var(--blue); box-shadow: 9px -6px 0 -2px #ad9ed0; }
+    .nav-links { display: flex; gap: 28px; align-items: center; }
+    .nav-links a { color: var(--muted); font-size: 14px; font-weight: 600; text-decoration: none; }
+    .nav-links a:hover { color: var(--blue); }
+    .hero { padding: 84px 0 68px; text-align: center; background: radial-gradient(ellipse at 18% 4%, #edf2ff 0, transparent 52%), radial-gradient(ellipse at 92% 35%, #f1ecf8 0, transparent 42%), #fafbfe; }
+    .eyebrow { display: block; margin: 0 0 16px; color: var(--blue); font-size: 12px; line-height: 1.5; font-weight: 750; letter-spacing: 2px; text-transform: uppercase; }
+    h1 { margin: 0; font-size: clamp(26px, 3.35vw, 43px); line-height: 1.27; font-weight: 620; letter-spacing: -1.3px; }
+    .wordmark { display: block; margin-bottom: 18px; color: var(--blue); font-size: clamp(68px, 8.6vw, 110px); line-height: 1; letter-spacing: -6px; font-weight: 800; }
+    .paper-title { display: block; max-width: 960px; margin-inline: auto; }
+    .title-tail { color: #566681; font-weight: 450; }
+    .hero-deck { max-width: 660px; margin: 26px auto 0; color: var(--muted); font-size: 18px; }
+    .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin: 30px 0 0; }
+    .button { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 11px 21px; border: 1px solid var(--ink); border-radius: 7px; color: #fff; background: var(--ink); text-decoration: none; font-size: 14px; font-weight: 650; transition: background .18s; }
+    .button:hover { background: var(--blue); border-color: var(--blue); }
+    .button.secondary { background: #fff; color: var(--ink); border-color: #cdd6e7; }
+    .button.secondary:hover { background: #edf2fc; }
+    .button-note { border-left: 1px solid #cdd6e7; padding-left: 12px; color: var(--muted); font-size: 12px; font-weight: 500; }
+    section { padding: 82px 0; }
+    .section-head { margin-bottom: 36px; max-width: 770px; }
+    h2 { margin: 0 0 16px; font-size: clamp(27px, 3vw, 37px); line-height: 1.25; letter-spacing: -1.1px; font-weight: 650; }
+    h3 { margin: 0 0 14px; font-size: 22px; line-height: 1.35; letter-spacing: -.4px; }
+    p { margin: 0 0 18px; }
+    p:last-child { margin-bottom: 0; }
+    .lede, .section-head p { color: var(--muted); }
+    .soft { background: var(--soft); border-block: 1px solid #e9edf4; }
+    figure { margin: 0; }
+    img { display: block; width: 100%; height: auto; }
+    .image-link { display: block; border-radius: 10px; background: #fff; }
+    .image-link img { border-radius: inherit; }
+    .image-link:hover { outline: 2px solid #aebfdf; outline-offset: 4px; }
+    .figure-shell { padding: 20px; background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 12px 40px rgba(35,58,101,.045); }
+    figcaption { margin-top: 18px; color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .overview { padding-top: 44px; padding-bottom: 62px; }
+    .overview .figure-shell { padding: 22px; }
+    .flow { display: grid; grid-template-columns: repeat(5, minmax(0,1fr)); gap: 22px; margin: 30px 0 0; padding: 0; list-style: none; }
+    .flow li { border-top: 2px solid var(--line); padding-top: 14px; font-size: 13px; color: var(--muted); line-height: 1.6; }
+    .flow b { display: block; color: var(--ink); font-size: 14px; margin-bottom: 4px; }
+    .step { color: var(--blue); font-weight: 700; margin-right: 6px; font-variant-numeric: tabular-nums; }
+    .abstract-layout { display: grid; grid-template-columns: .7fr 2fr; gap: 70px; }
+    .abstract-copy { font-size: 17px; line-height: 1.85; }
+    .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+    .module { min-width: 0; }
+    .module-label { display: inline-block; font-weight: 750; color: var(--blue); font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; margin-bottom: 12px; }
+    .module.l2 .module-label { color: var(--purple); }
+    .module .figure-shell { padding: 14px; margin-bottom: 26px; }
+    .module p { font-size: 16px; color: var(--muted); }
+    .method-note { margin-top: 34px; padding: 19px 24px; border-left: 3px solid #c6d4ed; background: var(--soft); color: var(--muted); font-size: 14px; }
+    .comparison-row { display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center; }
+    .comparison-row .figure-shell { max-width: 520px; }
+    .big-stat { color: var(--blue); font-size: 44px; font-weight: 700; line-height: 1.15; letter-spacing: -1.8px; font-variant-numeric: tabular-nums; }
+    .stat-caption { margin-top: 7px; color: var(--muted); font-size: 14px; }
+    .stats-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line); }
+    .comparison-relations { margin-top: 66px; padding-top: 54px; border-top: 1px solid var(--line); }
+    .comparison-relations .comparison-intro { display: grid; grid-template-columns: 1fr 1.3fr; gap: 50px; margin-bottom: 26px; }
+    .comparison-intro p { color: var(--muted); }
+    .result-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 28px 0 32px; margin-bottom: 28px; border-block: 1px solid var(--line); }
+    .result-highlights strong { display: block; margin-top: 10px; font-size: 16px; }
+    .result-highlights p { font-size: 14px; color: var(--muted); }
+    .table-scroll { overflow-x: auto; margin-top: 16px; border: 1px solid var(--line); border-radius: 9px; background: #fff; }
+    table { border-collapse: collapse; width: 100%; font-size: 14px; line-height: 1.5; font-variant-numeric: tabular-nums; }
+    caption { padding: 16px 18px; text-align: left; color: var(--ink); font-weight: 650; font-size: 15px; }
+    th, td { text-align: right; padding: 13px 16px; border-top: 1px solid #e8ecf3; white-space: nowrap; }
+    th:first-child, td:first-child { text-align: left; }
+    thead th { background: #f5f7fb; font-size: 12px; color: var(--muted); font-weight: 650; }
+    tbody th { font-weight: 500; }
+    .dataset th { background: #eaf0fa; color: #375589; font-size: 12px; font-weight: 750; letter-spacing: .7px; }
+    .ours { background: #f0f5ff; }
+    .ours th { font-weight: 700; }
+    .note { color: var(--muted); font-size: 13px; line-height: 1.7; margin-top: 15px; }
+    .details-list { margin-top: 34px; border-top: 1px solid var(--line); }
+    details { border-bottom: 1px solid var(--line); }
+    summary { padding: 21px 0; cursor: pointer; font-size: 16px; font-weight: 650; }
+    summary::marker { color: var(--blue); }
+    details[open] summary { color: var(--blue); }
+    .detail-body { padding: 0 0 25px; }
+    .detail-body > p { color: var(--muted); font-size: 14px; }
+    .detail-body .table-scroll { margin-bottom: 16px; }
+    .robot-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 28px; }
+    .robot-intro .section-head { margin-bottom: 0; }
+    .robot-intro > p { color: var(--muted); font-size: 16px; }
+    .robot-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding: 34px 0; margin-top: 26px; border-block: 1px solid var(--line); }
+    .robot-stats .big-stat { font-size: 39px; }
+    .robot-stats strong { display: block; margin: 9px 0 4px; font-size: 15px; }
+    .robot-stats p { font-size: 14px; color: var(--muted); }
+    .release { padding: 58px 0; }
+    .release-inner { display: flex; justify-content: space-between; align-items: center; gap: 28px; }
+    .release h2 { font-size: 27px; margin-bottom: 8px; }
+    .release p { color: var(--muted); font-size: 15px; }
+    footer { padding: 28px 0; border-top: 1px solid var(--line); color: var(--muted); font-size: 13px; }
+    .footer-inner { display: flex; justify-content: space-between; gap: 20px; }
+    footer a { color: inherit; }
+    @media (max-width: 850px) {
+      .wrap { width: calc(100% - 40px); }
+      .hero { padding-top: 58px; }
+      .nav-links { gap: 18px; }
+      .abstract-layout { grid-template-columns: 1fr; gap: 12px; }
+      .method-grid { gap: 24px; }
+      .comparison-row { gap: 32px; }
+      .flow { gap: 14px; }
+      .robot-intro { gap: 30px; }
+      th, td { padding: 12px; }
+    }
+    @media (max-width: 620px) {
+      html { scroll-padding-top: 125px; }
+      .wrap { width: calc(100% - 32px); }
+      .nav { flex-direction: column; gap: 6px; padding: 10px 0 12px; }
+      .nav-links { justify-content: center; gap: 20px; }
+      .nav-links a { font-size: 12px; }
+      .hero { padding: 44px 0; }
+      .hero-deck { font-size: 16px; }
+      .wordmark { letter-spacing: -4px; }
+      h1 { letter-spacing: -.7px; }
+      section { padding: 52px 0; }
+      .overview { padding-top: 28px; }
+      .overview .figure-shell, .figure-shell { padding: 10px; border-radius: 10px; }
+      .flow { grid-template-columns: 1fr 1fr; gap: 16px; }
+      .method-grid, .comparison-row, .comparison-relations .comparison-intro, .robot-intro { grid-template-columns: 1fr; gap: 26px; }
+      .module + .module { margin-top: 15px; }
+      .comparison-row .figure-shell { max-width: none; }
+      .comparison-relations { margin-top: 44px; padding-top: 36px; }
+      .comparison-relations .comparison-intro { gap: 0; }
+      .big-stat { font-size: 35px; }
+      .result-highlights { gap: 22px; }
+      .robot-stats { grid-template-columns: 1fr; gap: 24px; }
+      .robot-stats > div + div { border-top: 1px solid var(--line); padding-top: 24px; }
+      .robot-stats .big-stat { font-size: 37px; }
+      .release-inner, .footer-inner { flex-direction: column; align-items: flex-start; }
+      .abstract-copy { font-size: 16px; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .button { transition: none; } }
+    @media print { .site-header, .hero-actions, .release, .skip-link { display: none; } section { padding: 25px 0; } .wrap { width: 100%; } .figure-shell { box-shadow: none; } }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#content">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="brand" href="#top" aria-label="RECAP, back to top">RECAP</a>
+      <div class="nav-links">
+        <a href="#abstract">Abstract</a><a href="#method">Method</a><a href="#results">Results</a><a href="#robot">Robot</a><a href="https://github.com/3DAgentWorld/RECAP">GitHub ↗</a>
+      </div>
+    </nav>
+  </header>
+  <main id="content">
+    <div class="hero" id="top">
+      <div class="wrap">
+        <p class="eyebrow">Persistent 3D scene memory</p>
+        <h1><span class="wordmark">RECAP</span><span class="paper-title">Building 3D Semantic Scene Graphs<br><span class="title-tail">with Relational Evidence Capture and Pooling</span></span></h1>
+        <p class="hero-deck">From open-vocabulary observations to persistent entities, reliable relations, and language-based target selection.</p>
+        <div class="hero-actions">
+          <a class="button" href="#method">Explore the method <span aria-hidden="true">↓</span></a>
+          <a class="button secondary" href="https://github.com/3DAgentWorld/RECAP">GitHub <span class="button-note">Code coming soon</span></a>
+        </div>
+      </div>
+    </div>
+
+    <section class="overview" id="overview" aria-label="Framework overview">
+      <div class="wrap">
+        <figure class="figure-shell">
+          <a class="image-link" href="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure1-overview.png" target="_blank" rel="noopener" aria-label="Open the RECAP overview at full resolution in a new tab">
+            <img src="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure1-overview.png" width="2599" height="925" fetchpriority="high" alt="RECAP pipeline: offline supervision above five mapping and target-selection stages, from RGB keyframes to a persistent scene graph.">
+          </a>
+          <figcaption><strong>RECAP overview.</strong> Offline supervision adapts the compact observer and trains L1/L2. During mapping, observation and relation scoring share the same frozen compact-model weights. Select any figure to view it at full resolution.</figcaption>
+        </figure>
+        <ol class="flow" aria-label="Five stages of RECAP">
+          <li><b><span class="step">01</span>Observe</b>Predict object names, boxes, and relation descriptions.</li>
+          <li><b><span class="step">02</span>Lift to 3D</b>Use masks and geometry to locate observations in space.</li>
+          <li><b><span class="step">03</span>Consolidate</b>Associate repeated observations with persistent entities.</li>
+          <li><b><span class="step">04</span>Fuse relations</b>Weight evidence by reliability and viewpoint diversity.</li>
+          <li><b><span class="step">05</span>Select a goal</b>Retrieve an entity using its names and stored relations.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section class="soft" id="abstract">
+      <div class="wrap abstract-layout">
+        <div><span class="eyebrow">The idea</span><h2>Observations become<br>scene memory.</h2><p class="lede">Abstract</p></div>
+        <div class="abstract-copy" id="paper-abstract">
+          <p>We present RECAP, a framework for constructing persistent 3D semantic scene graphs that support natural-language object queries and robot navigation. Frame-wise predictions can represent the same object as multiple nodes and produce inconsistent relations, while repeated viewpoints can reinforce these errors. To obtain open-vocabulary scene observations, we fine-tune a compact vision–language model using structured pseudo-labels generated offline by a larger model. After mapping observations into 3D, Entity Consolidation (L1) uses learned cross-frame associations to form persistent entities while retaining view-specific object names.</p>
+          <p>Relation Belief Fusion (L2) scores relations between these entities using the same frozen compact model, then aggregates multi-view predictions with learned reliability weights while discounting repeated viewpoints. Experiments on 3DSSG and zero-shot ReplicaSSG show higher relation recall than FROSS and DeWorldSG. With RGB-D inputs and ground-truth poses, the relative gains over DeWorldSG are 27.55% and 18.25% on the two datasets, respectively. Controlled ablations show reduced entity fragmentation and improved target selection for relational queries. Downstream evaluation examines query-selected goals through shortest-path endpoints on a ground-truth navigation mesh and physical-robot navigation through historical image goals in previously scanned environments.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="method">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">Method</span><h2>Two updates. One persistent memory.</h2><p>A compact VLM supplies structured scene observations. L1 establishes consistent entity identities; L2 accumulates relation evidence at those persistent endpoints.</p></div>
+        <div class="method-grid">
+          <article class="module">
+            <span class="module-label">L1 · Identity across views</span><h3>Entity Consolidation</h3>
+            <figure class="figure-shell"><a class="image-link" href="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure2-l1.png" target="_blank" rel="noopener" aria-label="Open the L1 schematic at full resolution in a new tab"><img src="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure2-l1.png" width="1796" height="1128" loading="lazy" decoding="async" alt="L1 schematic: candidate generation, learned association, joint assignment, and persistent entities with retained name evidence."></a></figure>
+            <p>Repeated views can describe the same physical object with different names and partial geometry. L1 combines spatial, semantic, temporal, quality, and relational-context evidence to associate observations across frames.</p>
+            <p>Joint assignment handles compact objects; local plane alignment and footprint connectivity handle structural surfaces. Each entity retains distinct observed names for later language matching.</p>
+          </article>
+          <article class="module l2">
+            <span class="module-label">L2 · Evidence across views</span><h3>Relation Belief Fusion</h3>
+            <figure class="figure-shell"><a class="image-link" href="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure2-l2.png" target="_blank" rel="noopener" aria-label="Open the L2 schematic at full resolution in a new tab"><img src="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure2-l2.png" width="1796" height="1157" loading="lazy" decoding="async" alt="L2 schematic: geometric pair selection, frozen relation scoring, reliability and view-density weighting, and weighted log-opinion pooling."></a></figure>
+            <p>Geometry and joint visibility select ordered entity pairs. An additional call to the shared, frozen VLM scores each pair over a task-specific predicate set, including <code>NONE</code>.</p>
+            <p>Learned reliability weights reduce the influence of poor observations, while view-density discounting limits repeated viewpoints. A weighted log-opinion pool produces each pair’s persistent relation distribution.</p>
+          </article>
+        </div>
+        <p class="method-note"><strong>Observation and supervision.</strong> RECAP samples one in five RGB frames. Structured pseudo-label SFT adapts Qwen3-VL-2B-Instruct; SAM3 masks support 3D lifting. RGB geometry comes from VGGT-Ω with Depth Anything 3 scale alignment. L1 and L2 use 3DSSG instance and relation supervision, respectively. Object names remain open vocabulary; relation scoring uses a fixed task-specific codebook.</p>
+      </div>
+    </section>
+
+    <section class="soft" id="comparisons">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">Qualitative comparisons</span><h2>What changes in the scene graph?</h2><p>Examples from Replica illustrate how persistent identity and multi-view relation fusion address different failure modes.</p></div>
+        <div class="comparison-row">
+          <figure class="figure-shell">
+            <a class="image-link" href="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure3-entity-comparison.png" target="_blank" rel="noopener" aria-label="Open the entity comparison at full resolution in a new tab"><img src="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure3-entity-comparison.png" width="1795" height="1455" loading="lazy" decoding="async" alt="Replica comparison: FROSS retains a bed-corner fragment labeled pillow at the top; RECAP consolidates the bed into a persistent entity below."></a>
+            <figcaption><strong>Entity Consolidation on Replica.</strong> FROSS above; RECAP below.</figcaption>
+          </figure>
+          <div>
+            <span class="module-label">Consistent entity identity</span><h3>One bed, across partial views.</h3>
+            <p>FROSS’s same-class association rule leaves a bed-corner observation labeled “pillow” separate from the bed. RECAP combines geometric, semantic, and temporal evidence to consolidate observations with inconsistent names into a persistent entity.</p>
+            <div class="stats-pair"><div><div class="big-stat">45.6%</div><div class="stat-caption">less compact-object fragmentation</div></div><div><div class="big-stat">76.2%</div><div class="stat-caption">less surface fragmentation</div></div></div>
+            <p class="note">3DSSG controlled L1 ablation, relative to FROSS-style association with shared observations and semantic readout. False merges increase from 3.11% to 4.04%; full results are below.</p>
+          </div>
+        </div>
+        <div class="comparison-relations">
+          <div class="comparison-intro"><div><span class="module-label">Selective relation evidence</span><h3>Recover missed relations.<br>Limit repeated errors.</h3></div><p>FROSS shows spurious ceiling-light links and missing table–chair relations. Relation Belief Fusion rescores geometrically eligible pairs, including those without an initial relation statement, then weights observations by reliability and discounts repeated views.</p></div>
+          <figure class="figure-shell">
+            <a class="image-link" href="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure4-relation-comparison.png" target="_blank" rel="noopener" aria-label="Open the relation comparison at full resolution in a new tab"><img src="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure4-relation-comparison.png" width="2198" height="618" loading="lazy" decoding="async" alt="Replica relation comparison with missed and spurious relations highlighted: FROSS on the left and RECAP on the right."></a>
+            <figcaption><strong>Relation Belief Fusion on Replica.</strong> FROSS (left) and RECAP (right), with missing and spurious links highlighted.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section id="results">
+      <div class="wrap">
+        <div class="section-head"><span class="eyebrow">Experiments</span><h2>From prediction quality to target selection.</h2><p>Scene-graph benchmarks measure the resulting representation. Controlled ablations isolate observation quality, entity association, and relation aggregation.</p></div>
+        <div class="result-highlights"><div><div class="big-stat">+27.55%</div><strong>3DSSG relation recall</strong><p>Relative gain over DeWorldSG · RGB-D with GT poses</p></div><div><div class="big-stat">+18.25%</div><strong>Zero-shot ReplicaSSG relation recall</strong><p>Relative gain over DeWorldSG · RGB-D with GT poses</p></div></div>
+        <div class="table-scroll" tabindex="0" role="region" aria-label="Overall scene-graph performance, scroll horizontally on small screens">
+          <table>
+            <caption>Overall scene-graph performance (%)</caption>
+            <thead><tr><th scope="col">Method</th><th scope="col">Input</th><th scope="col">Relation<br>recall</th><th scope="col">Object<br>recall</th><th scope="col">Predicate<br>recall</th><th scope="col">Object<br>mRecall</th><th scope="col">Predicate<br>mRecall</th></tr></thead>
+            <tbody>
+              <tr class="dataset"><th colspan="7" scope="rowgroup">3DSSG</th></tr>
+              <tr><th scope="row">FROSS</th><td>RGB-D</td><td>27.90</td><td>62.40</td><td>33.00</td><td>63.80</td><td>18.00</td></tr>
+              <tr><th scope="row">DeWorldSG</th><td>RGB-D</td><td>50.20</td><td><strong>75.00</strong></td><td>57.30</td><td>70.60</td><td>36.00</td></tr>
+              <tr><th scope="row">RECAP</th><td>RGB</td><td>58.84</td><td>68.78</td><td>65.37</td><td>67.30</td><td>52.40</td></tr>
+              <tr class="ours"><th scope="row">RECAP</th><td>RGB-D</td><td><strong>64.03</strong></td><td>74.42</td><td><strong>70.60</strong></td><td><strong>75.20</strong></td><td><strong>56.50</strong></td></tr>
+            </tbody>
+            <tbody>
+              <tr class="dataset"><th colspan="7" scope="rowgroup">ReplicaSSG · zero-shot</th></tr>
+              <tr><th scope="row">FROSS</th><td>RGB-D</td><td>22.30</td><td>26.10</td><td>27.80</td><td>28.80</td><td>20.40</td></tr>
+              <tr><th scope="row">DeWorldSG</th><td>RGB-D</td><td>38.20</td><td>35.40</td><td>45.30</td><td>38.10</td><td>27.30</td></tr>
+              <tr><th scope="row">RECAP</th><td>RGB</td><td>41.46</td><td>48.12</td><td>47.08</td><td>48.30</td><td>38.21</td></tr>
+              <tr class="ours"><th scope="row">RECAP</th><td>RGB-D</td><td><strong>45.17</strong></td><td><strong>51.42</strong></td><td><strong>50.08</strong></td><td><strong>52.29</strong></td><td><strong>43.88</strong></td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">mRecall: mean recall. RGB uses estimated depth and camera poses; RGB-D uses sensor depth and ground-truth poses. FROSS and DeWorldSG numbers are quoted from their papers under the same benchmark evaluation protocol. RECAP uses 37 3DSSG test scans and all 11 ReplicaSSG test scenes.</p>
+        <div class="details-list">
+          <details>
+            <summary>Structured observations · fewer empty outputs, higher relation precision</summary>
+            <div class="detail-body">
+              <p>Structured SFT is compared with the base observer and non-empty prompting on the same images. Empty-output rates use answerable frames; precision measures image-supported emitted facts.</p>
+              <div class="table-scroll" tabindex="0" role="region" aria-label="Observation quality table"><table><caption>Compact VLM output quality (%)</caption><thead><tr><th scope="col">Observation model</th><th scope="col">Object empty ↓</th><th scope="col">Relation empty ↓</th><th scope="col">Object precision ↑</th><th scope="col">Relation precision ↑</th></tr></thead><tbody>
+                <tr><th scope="row">Base 2B</th><td>20.10</td><td>10.70</td><td>98.10</td><td>88.20</td></tr>
+                <tr><th scope="row">+ non-empty prompting</th><td>0.00</td><td>10.40</td><td>97.50</td><td>85.90</td></tr>
+                <tr class="ours"><th scope="row">+ structured SFT</th><td>0.00</td><td>0.00</td><td>97.70</td><td>92.40</td></tr>
+              </tbody></table></div>
+              <p>The audit contains 8,339 object-answerable images, including 8,256 relation-answerable images. All variants use the same format repair and single retry at temperature 0.6. Reported metrics use final outputs after this procedure.</p>
+            </div>
+          </details>
+          <details>
+            <summary>L1 · persistent entities and correct-instance selection</summary>
+            <div class="detail-body">
+              <p>All variants share observations, geometry, and max-prototype semantic readout. Fragmentation counts predicted entities per represented GT instance (ideal: 1). False merge measures parents containing multiple GT identities; correct instance@1 measures object-query target selection.</p>
+              <div class="table-scroll" tabindex="0" role="region" aria-label="L1 entity consolidation table"><table><caption>Entity Consolidation ablation</caption><thead><tr><th scope="col">Entity memory</th><th scope="col">Compact frag. ↓</th><th scope="col">Surface frag. ↓</th><th scope="col">False merge (%) ↓</th><th scope="col">Correct instance@1 (%) ↑</th></tr></thead><tbody>
+                <tr><th scope="row">Shared observations + FROSS-style association</th><td>2.83</td><td>13.17</td><td>3.11</td><td>59.23</td></tr>
+                <tr><th scope="row">L1 without surface continuity</th><td>1.50</td><td>12.33</td><td>4.59</td><td>65.74</td></tr>
+                <tr class="ours"><th scope="row">Full L1</th><td>1.54</td><td>3.14</td><td>4.04</td><td>69.17</td></tr>
+              </tbody></table></div>
+              <p>Memory metrics use the 37-scan 3DSSG RGB-D setting; target accuracy uses the 120 Replica object queries. Both report unweighted scene means.</p>
+            </div>
+          </details>
+          <details>
+            <summary>L2 · reliable aggregation and relational target selection</summary>
+            <div class="detail-body">
+              <p>Compared methods share full-L1 endpoints, the frozen scorer, per-view predictions, and geometry-only candidates. Presence F1 distinguishes a listed relation from <code>NONE</code>; relational target@1 counts correct subject selections over all relational queries.</p>
+              <div class="table-scroll" tabindex="0" role="region" aria-label="L2 relation fusion table"><table><caption>Relation Belief Fusion ablation (%)</caption><thead><tr><th scope="col">Edge aggregation</th><th scope="col">Predicate mRecall ↑</th><th scope="col">Presence F1 ↑</th><th scope="col">Relational target@1 ↑</th></tr></thead><tbody>
+                <tr><th scope="row">Majority vote</th><td>45.15</td><td>62.10</td><td>31.84</td></tr>
+                <tr><th scope="row">Unweighted log pooling</th><td>50.70</td><td>64.58</td><td>32.86</td></tr>
+                <tr><th scope="row">+ reliability weighting</th><td>54.29</td><td>67.96</td><td>36.27</td></tr>
+                <tr class="ours"><th scope="row">+ view-density discounting (full L2)</th><td>56.50</td><td>71.14</td><td>38.79</td></tr>
+              </tbody></table></div>
+              <p>Relation-recognition metrics use 3DSSG; target accuracy uses the 265 Replica relational queries. Both report unweighted scene means.</p>
+            </div>
+          </details>
+          <details>
+            <summary>Relational goal localization · shortest-path endpoint evaluation</summary>
+            <div class="detail-body">
+              <p>Across 11 Replica test scenes, 265 relational queries yield 1,325 query–start trials. The predicted graph selects a target; a shared GT NavMesh supplies traversable space and ideal shortest paths. The endpoint is evaluated without action-level execution.</p>
+              <div class="table-scroll" tabindex="0" role="region" aria-label="NavMesh endpoint evaluation table"><table><caption>Relational goal localization (%)</caption><thead><tr><th scope="col">Persistent memory</th><th scope="col">Endpoint SR@1m ↑</th></tr></thead><tbody>
+                <tr><th scope="row">Legacy association + majority relations</th><td>23.01</td></tr>
+                <tr><th scope="row">L1 + majority relations</th><td>28.07</td></tr>
+                <tr class="ours"><th scope="row">Full RECAP</th><td>33.65</td></tr>
+                <tr><th scope="row">Full RECAP + closed-vocabulary name projection</th><td>18.59</td></tr>
+              </tbody></table></div>
+              <p>SR@1m uses Euclidean distance from the endpoint to the intended object’s GT 3D bounding box. Failed predictions, goal snapping, and paths remain in the denominator. Scores are averaged equally across scenes.</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <section class="soft" id="robot">
+      <div class="wrap">
+        <div class="robot-intro">
+          <div class="section-head"><span class="eyebrow">Physical-robot evaluation</span><h2>From a language query<br>to a physical target.</h2><p>8 indoor environments · 80 distinct queries · 160 attempted episodes</p></div>
+          <p>A teleoperated RGB scan builds the persistent scene memory and an ordered image map. MiniLM matches query phrases to retained entity names, with L2 disambiguating relational descriptions. The selected entity supplies a historical image goal for a frozen ViNT navigator. Depth observations provide obstacle protection during execution.</p>
+        </div>
+        <figure class="figure-shell">
+          <a class="image-link" href="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure5-physical-robot.png" target="_blank" rel="noopener" aria-label="Open the physical-robot example at full resolution in a new tab"><img src="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure5-physical-robot.png" width="2599" height="751" loading="lazy" decoding="async" alt="One physical query episode: query and candidate objects, the selected entity and execution path, and the robot endpoint measured 0.72 meters from the intended object."></a>
+          <figcaption><strong>One query, from selection to arrival.</strong> The three panels show the same episode. The endpoint is 0.72 m from the intended target by laser measurement.</figcaption>
+        </figure>
+        <div class="robot-stats">
+          <div><div class="big-stat">70.00%</div><strong>Correct-instance selection</strong><p>112 / 160 attempted episodes</p></div>
+          <div><div class="big-stat">58.13%</div><strong>Physical SR@1m</strong><p>93 / 160 attempted episodes</p></div>
+          <div><div class="big-stat">54.38%</div><strong>Correct instance + SR@1m</strong><p>87 / 160 attempted episodes</p></div>
+        </div>
+        <p class="note">Physical SR@1m requires no execution failure and a laser-measured distance of at most 1 m from the robot’s front-edge center to the intended object’s nearest measurable surface. Rejections, unavailable image goals, collisions, timeouts, and manual takeovers count as failures. Repeated episodes do not add distinct queries.</p>
+      </div>
+    </section>
+
+    <section class="release" id="code"><div class="wrap release-inner"><div><h2>Code coming soon.</h2><p>The official RECAP repository is hosted at 3DAgentWorld.</p></div><a class="button secondary" href="https://github.com/3DAgentWorld/RECAP">Visit the repository <span aria-hidden="true">↗</span></a></div></section>
+  </main>
+  <footer><div class="wrap footer-inner"><span>RECAP · Relational Evidence Capture and Pooling</span><span>Project page maintained by <a href="https://github.com/uprightderran">Ziran Yin</a>.</span></div></footer>
+</body>
+</html>
