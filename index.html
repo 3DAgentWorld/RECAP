@@ -30,26 +30,26 @@
     .nav-links { display: flex; gap: 28px; align-items: center; }
     .nav-links a { color: var(--muted); font-size: 14px; font-weight: 600; text-decoration: none; }
     .nav-links a:hover { color: var(--blue); }
-    .hero { padding: 62px 0 52px; text-align: center; background: radial-gradient(ellipse at 18% 4%, #edf2ff 0, transparent 52%), radial-gradient(ellipse at 92% 35%, #f1ecf8 0, transparent 42%), #fafbfe; }
+    .hero { padding: 30px 0 28px; text-align: center; background: radial-gradient(ellipse at 18% 4%, #edf2ff 0, transparent 52%), radial-gradient(ellipse at 92% 35%, #f1ecf8 0, transparent 42%), #fafbfe; }
     .eyebrow { display: block; margin: 0 0 16px; color: var(--blue); font-size: 12px; line-height: 1.5; font-weight: 750; letter-spacing: 2px; text-transform: uppercase; }
-    h1 { margin: 0; font-size: clamp(26px, 3.35vw, 43px); line-height: 1.27; font-weight: 620; letter-spacing: -1.3px; }
-    .wordmark { display: block; margin-bottom: 18px; color: var(--blue); font-size: clamp(68px, 8.6vw, 110px); line-height: 1; letter-spacing: -6px; font-weight: 800; }
+    h1 { margin: 0; font-size: clamp(24px, 2.8vw, 36px); line-height: 1.25; font-weight: 620; letter-spacing: -1px; }
+    .wordmark { display: block; margin-bottom: 12px; color: var(--blue); font-size: clamp(48px, 5vw, 66px); line-height: 1; letter-spacing: -3px; font-weight: 800; }
     .paper-title { display: block; max-width: 960px; margin-inline: auto; }
     .title-tail { color: #566681; font-weight: 450; }
-    .hero-deck { max-width: 660px; margin: 26px auto 0; color: var(--muted); font-size: 18px; }
-    .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 12px; margin: 30px 0 0; }
+    .hero-deck { max-width: 760px; margin: 16px auto 0; color: var(--muted); font-size: 17px; }
+    .hero-actions { display: flex; justify-content: center; flex-wrap: wrap; gap: 10px; margin: 20px 0 0; }
     .button { display: inline-flex; align-items: center; justify-content: center; gap: 12px; padding: 11px 21px; border: 1px solid var(--ink); border-radius: 7px; color: #fff; background: var(--ink); text-decoration: none; font-size: 14px; font-weight: 650; transition: background .18s; }
     .button:hover { background: var(--blue); border-color: var(--blue); }
     .button.secondary { background: #fff; color: var(--ink); border-color: #cdd6e7; }
     .button.secondary:hover { background: #edf2fc; }
     .button-note { border-left: 1px solid #cdd6e7; padding-left: 12px; color: var(--muted); font-size: 12px; font-weight: 500; }
-    section { padding: 82px 0; }
+    section { padding: 64px 0; }
     .section-head { margin-bottom: 36px; max-width: 770px; }
     h2 { margin: 0 0 16px; font-size: clamp(27px, 3vw, 37px); line-height: 1.25; letter-spacing: -1.1px; font-weight: 650; }
     h3 { margin: 0 0 14px; font-size: 22px; line-height: 1.35; letter-spacing: -.4px; }
     p { margin: 0 0 18px; }
     p:last-child { margin-bottom: 0; }
-    .lede, .section-head p { color: var(--muted); }
+    .section-head p { color: var(--muted); }
     .soft { background: var(--soft); border-block: 1px solid #e9edf4; }
     figure { margin: 0; }
     img { display: block; width: 100%; height: auto; }
@@ -58,8 +58,10 @@
     .image-link:hover { outline: 2px solid #aebfdf; outline-offset: 4px; }
     .figure-shell { padding: 20px; background: #fff; border: 1px solid var(--line); border-radius: 14px; box-shadow: 0 12px 40px rgba(35,58,101,.045); }
     figcaption { margin-top: 18px; color: var(--muted); font-size: 14px; line-height: 1.7; }
-    .video-section { padding: 54px 0 64px; background: linear-gradient(#fafbfe, #fff); }
-    .video-section .section-head { max-width: 820px; margin-bottom: 28px; }
+    .video-section { padding: 18px 0 46px; background: linear-gradient(#fafbfe, #fff); }
+    .video-section .section-head { max-width: 960px; margin-bottom: 18px; }
+    .video-section .section-head h2 { font-size: 27px; margin-bottom: 6px; }
+    .video-section .section-head p { font-size: 15px; }
     .video-card { overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: #fff; box-shadow: 0 12px 36px rgba(35,58,101,.06); }
     .video-card + .video-card { margin-top: 28px; }
     .video-card-head { display: flex; align-items: center; justify-content: space-between; gap: 16px; padding: 20px 24px 14px; }
@@ -69,9 +71,14 @@
     .comparison-labels span { padding: 9px 12px; background: #f1f3f7; color: #505d72; }
     .comparison-labels span + span { background: #eaf0ff; color: var(--blue); }
     .comparison-video { display: block; width: 100%; height: auto; aspect-ratio: 60 / 17; background: #f6f8fc; }
-    .video-card figcaption { display: flex; align-items: baseline; justify-content: space-between; gap: 24px; margin: 0; padding: 17px 24px 20px; }
-    .video-card figcaption p { margin: 0; max-width: 800px; }
-    .video-card figcaption a { flex-shrink: 0; font-size: 13px; font-weight: 600; }
+    .video-card figcaption { margin: 0; padding: 17px 24px 20px; }
+    .watch-points { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin: 0 0 16px; padding-left: 19px; }
+    .watch-points li { padding-left: 3px; }
+    .watch-points strong { color: var(--ink); }
+    .video-actions { display: flex; align-items: center; flex-wrap: wrap; gap: 12px 20px; }
+    .video-actions .button { font-size: 13px; padding: 8px 14px; }
+    .video-actions span { font-size: 12px; }
+    .mobile-detail { display: none; }
     .video-section > .wrap > .note { margin-top: 22px; }
     .overview { padding-top: 44px; padding-bottom: 62px; }
     .overview .figure-shell { padding: 22px; }
@@ -79,23 +86,20 @@
     .flow li { border-top: 2px solid var(--line); padding-top: 14px; font-size: 13px; color: var(--muted); line-height: 1.6; }
     .flow b { display: block; color: var(--ink); font-size: 14px; margin-bottom: 4px; }
     .step { color: var(--blue); font-weight: 700; margin-right: 6px; font-variant-numeric: tabular-nums; }
-    .abstract-layout { display: grid; grid-template-columns: .7fr 2fr; gap: 70px; }
+    .abstract-section { padding: 0; }
+    .abstract-section details { border: 0; }
+    .abstract-section summary { padding: 22px 0; }
     .abstract-copy { font-size: 17px; line-height: 1.85; }
-    .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; }
+    .method-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; align-items: start; }
     .module { min-width: 0; }
+    .module + .module { margin-top: 44px; padding-top: 40px; border-top: 1px solid var(--line); }
+    .module .mechanism-result { padding: 14px 18px; margin-top: 18px; border-left: 3px solid var(--blue); background: #f0f5ff; font-size: 14px; }
+    .module.l2 .mechanism-result { border-color: var(--purple); background: #f5f1fa; }
     .module-label { display: inline-block; font-weight: 750; color: var(--blue); font-size: 12px; letter-spacing: 1.6px; text-transform: uppercase; margin-bottom: 12px; }
     .module.l2 .module-label { color: var(--purple); }
     .module .figure-shell { padding: 14px; margin-bottom: 26px; }
     .module p { font-size: 16px; color: var(--muted); }
-    .method-note { margin-top: 34px; padding: 19px 24px; border-left: 3px solid #c6d4ed; background: var(--soft); color: var(--muted); font-size: 14px; }
-    .comparison-row { display: grid; grid-template-columns: 1.05fr 1fr; gap: 64px; align-items: center; }
-    .comparison-row .figure-shell { max-width: 520px; }
     .big-stat { color: var(--blue); font-size: 44px; font-weight: 700; line-height: 1.15; letter-spacing: -1.8px; font-variant-numeric: tabular-nums; }
-    .stat-caption { margin-top: 7px; color: var(--muted); font-size: 14px; }
-    .stats-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; margin-top: 30px; padding-top: 24px; border-top: 1px solid var(--line); }
-    .comparison-relations { margin-top: 66px; padding-top: 54px; border-top: 1px solid var(--line); }
-    .comparison-relations .comparison-intro { display: grid; grid-template-columns: 1fr 1.3fr; gap: 50px; margin-bottom: 26px; }
-    .comparison-intro p { color: var(--muted); }
     .result-highlights { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; padding: 28px 0 32px; margin-bottom: 28px; border-block: 1px solid var(--line); }
     .result-highlights strong { display: block; margin-top: 10px; font-size: 16px; }
     .result-highlights p { font-size: 14px; color: var(--muted); }
@@ -121,6 +125,14 @@
     .robot-intro { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; margin-bottom: 28px; }
     .robot-intro .section-head { margin-bottom: 0; }
     .robot-intro > p { color: var(--muted); font-size: 16px; }
+    .robot-query { margin: 0 0 22px; padding: 18px 22px; border-left: 3px solid #378261; background: #edf6f1; font-size: 20px; font-weight: 600; line-height: 1.5; }
+    .robot-query span { display: block; color: #35614d; font-size: 12px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+    .robot-demo { display: grid; grid-template-columns: 1.7fr 1fr; gap: 24px; margin-bottom: 28px; align-items: start; }
+    .robot-video { display: block; width: 100%; height: auto; background: #182137; }
+    .robot-goals { display: grid; gap: 18px; }
+    .robot-goals img { max-height: 235px; object-fit: contain; }
+    .robot-goals figcaption { margin-top: 8px; font-size: 13px; }
+    .robot-flow { display: flex; flex-wrap: wrap; gap: 8px 18px; margin: 18px 0 0; padding-left: 24px; font-size: 13px; font-weight: 600; color: var(--muted); }
     .robot-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; padding: 34px 0; margin-top: 26px; border-block: 1px solid var(--line); }
     .robot-stats .big-stat { font-size: 39px; }
     .robot-stats strong { display: block; margin: 9px 0 4px; font-size: 15px; }
@@ -134,11 +146,9 @@
     footer a { color: inherit; }
     @media (max-width: 850px) {
       .wrap { width: calc(100% - 40px); }
-      .hero { padding-top: 58px; }
+      .hero { padding-top: 28px; }
       .nav-links { gap: 18px; }
-      .abstract-layout { grid-template-columns: 1fr; gap: 12px; }
       .method-grid { gap: 24px; }
-      .comparison-row { gap: 32px; }
       .flow { gap: 14px; }
       .robot-intro { gap: 30px; }
       th, td { padding: 12px; }
@@ -149,24 +159,37 @@
       .nav { flex-direction: column; gap: 6px; padding: 10px 0 12px; }
       .nav-links { justify-content: center; gap: 10px 16px; flex-wrap: wrap; }
       .nav-links a { font-size: 12px; }
-      .hero { padding: 44px 0; }
+      .hero { padding: 24px 0; }
       .hero-deck { font-size: 16px; }
-      .wordmark { letter-spacing: -4px; }
+      .hero-actions .button { padding: 10px 14px; font-size: 13px; }
+      .hero-actions .button-note { display: none; }
+      .wordmark { letter-spacing: -2px; }
       h1 { letter-spacing: -.7px; }
       section { padding: 52px 0; }
       .overview { padding-top: 28px; }
-      .video-section { padding: 32px 0 42px; }
+      .video-section { padding: 14px 0 36px; }
       .video-card { border-radius: 10px; }
       .video-card-head { padding: 16px; align-items: flex-start; flex-direction: column; gap: 6px; }
       .video-card h3 { font-size: 18px; }
-      .video-card figcaption { flex-direction: column; gap: 10px; padding: 14px 16px 18px; }
+      .video-card figcaption { padding: 14px 16px 18px; }
+      .watch-points { grid-template-columns: 1fr; gap: 8px; }
+      .video-actions { gap: 8px; }
+      .video-actions .button { width: 100%; min-height: 44px; }
+      .mobile-detail { display: block; margin-top: 16px; }
+      .mobile-detail summary { padding: 12px 0; font-size: 14px; }
+      .detail-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding-bottom: 12px; }
+      .detail-crop { display: block; position: relative; overflow: hidden; aspect-ratio: 1 / 1; border: 1px solid var(--line); border-radius: 6px; }
+      .detail-crop img { position: absolute; width: 600%; max-width: none; height: auto; top: -60%; }
+      .crop-bed-left img { left: -70%; }
+      .crop-bed-right img { left: -370%; }
+      .crop-chair-left img { left: -40%; top: -38%; }
+      .crop-chair-right img { left: -340%; top: -38%; }
+      .detail-pair b { display: block; margin-top: 6px; text-align: center; font-size: 12px; }
       .overview .figure-shell, .figure-shell { padding: 10px; border-radius: 10px; }
       .flow { grid-template-columns: 1fr 1fr; gap: 16px; }
-      .method-grid, .comparison-row, .comparison-relations .comparison-intro, .robot-intro { grid-template-columns: 1fr; gap: 26px; }
-      .module + .module { margin-top: 15px; }
-      .comparison-row .figure-shell { max-width: none; }
-      .comparison-relations { margin-top: 44px; padding-top: 36px; }
-      .comparison-relations .comparison-intro { gap: 0; }
+      .method-grid, .robot-intro, .robot-demo { grid-template-columns: 1fr; gap: 22px; }
+      .robot-goals { grid-template-columns: 1fr 1fr; gap: 12px; }
+      .robot-query { font-size: 18px; padding: 15px; }
       .big-stat { font-size: 35px; }
       .result-highlights { gap: 22px; }
       .robot-stats { grid-template-columns: 1fr; gap: 24px; }
@@ -192,12 +215,11 @@
   <main id="content">
     <div class="hero" id="top">
       <div class="wrap">
-        <p class="eyebrow">Persistent 3D scene memory</p>
         <h1><span class="wordmark">RECAP</span><span class="paper-title">Building 3D Semantic Scene Graphs<br><span class="title-tail">with Relational Evidence Capture and Pooling</span></span></h1>
-        <p class="hero-deck">3D scene graphs describe objects and their relationships so robots can find a target by language. RECAP connects observations across views to build a persistent scene memory.</p>
+        <p class="hero-deck">A persistent memory of objects and their relationships, built from multi-view observations for language-based robot goals.</p>
         <div class="hero-actions">
-          <a class="button" href="#videos">Watch the comparisons <span aria-hidden="true">↓</span></a>
-          <a class="button secondary" href="#overview">Explore the method</a>
+          <a class="button" href="#videos">Compare videos <span aria-hidden="true">↓</span></a>
+          <a class="button secondary" href="#overview">Method</a>
           <a class="button secondary" href="https://github.com/3DAgentWorld/RECAP">GitHub <span class="button-note">Code coming soon</span></a>
         </div>
       </div>
@@ -205,26 +227,40 @@
 
     <section class="video-section" id="videos" aria-labelledby="videos-title">
       <div class="wrap">
-        <div class="section-head"><span class="eyebrow">FROSS vs. RECAP (Ours)</span><h2 id="videos-title">See the difference in 3D.</h2><p>Two side-by-side scene-graph visualizations from Replica. Follow the changing viewpoint to inspect object identities and the relations between them.</p></div>
+        <div class="section-head"><h2 id="videos-title">See the difference in 3D.</h2><p>FROSS vs. RECAP (Ours) on Replica. Inspect the highlighted differences below each clip.</p></div>
         <figure class="video-card">
           <div class="video-card-head"><h3 id="room1-title">Persistent entities across partial views</h3><span class="clip-meta">Replica · Room 1 · 5-second clip</span></div>
           <div class="comparison-labels" aria-hidden="true"><span>FROSS</span><span>RECAP (Ours)</span></div>
-          <video class="comparison-video" controls loop muted playsinline preload="none" width="2400" height="680" poster="assets/comparisons/replica-room1-v11.jpg" aria-labelledby="room1-title" aria-describedby="room1-caption">
+          <video id="room1-video" class="comparison-video" controls loop muted playsinline preload="none" width="2400" height="680" poster="assets/comparisons/replica-room1-v11.jpg" aria-labelledby="room1-title" aria-describedby="room1-caption">
             <source src="assets/comparisons/replica-room1-v11.mp4" type="video/mp4">
             <p>Your browser cannot play this video. <a href="assets/comparisons/replica-room1-v11.mp4">Open the Room 1 comparison.</a></p>
           </video>
-          <figcaption id="room1-caption"><p>Inspect the bed, the pillow-labeled fragments, and nearby relation edges. RECAP consolidates partial observations into persistent entities while retaining their language evidence.</p><a href="assets/comparisons/replica-room1-v11.mp4">Open full-size video ↗</a></figcaption>
+          <figcaption id="room1-caption">
+            <ul class="watch-points"><li><strong>Bed and pillows:</strong> inspect fragmented geometry and incorrectly merged instances.</li><li><strong>Wall picture:</strong> compare which objects have graph nodes.</li><li><strong>Relation links:</strong> follow the light and window connections.</li></ul>
+            <div class="video-actions"><a class="button secondary" href="assets/comparisons/replica-room1-v11.mp4" data-fullscreen="room1-video">View fullscreen ↗</a><span>On a phone, rotate to landscape for small labels.</span></div>
+            <details class="mobile-detail" open><summary>Enlarged still: bed and pillow geometry</summary><div class="detail-pair">
+              <div><a class="detail-crop crop-bed-left" href="assets/comparisons/replica-room1-v11.jpg" aria-label="Open the full Room 1 still to inspect the FROSS bed and pillows"><img src="assets/comparisons/replica-room1-v11.jpg" width="2400" height="680" loading="lazy" alt="Enlarged FROSS bed and pillow region from the comparison video's first frame."></a><b>FROSS</b></div>
+              <div><a class="detail-crop crop-bed-right" href="assets/comparisons/replica-room1-v11.jpg" aria-label="Open the full Room 1 still to inspect the RECAP bed and pillows"><img src="assets/comparisons/replica-room1-v11.jpg" width="2400" height="680" loading="lazy" alt="Matching RECAP bed and pillow region from the same comparison frame."></a><b>RECAP (Ours)</b></div>
+            </div></details>
+          </figcaption>
         </figure>
         <figure class="video-card">
           <div class="video-card-head"><h3 id="room2-title">Relations supported across views</h3><span class="clip-meta">Replica · Room 2 · 5-second clip</span></div>
           <div class="comparison-labels" aria-hidden="true"><span>FROSS</span><span>RECAP (Ours)</span></div>
-          <video class="comparison-video" controls loop muted playsinline preload="none" width="2400" height="680" poster="assets/comparisons/replica-room2-v4.jpg" aria-labelledby="room2-title" aria-describedby="room2-caption">
+          <video id="room2-video" class="comparison-video" controls loop muted playsinline preload="none" width="2400" height="680" poster="assets/comparisons/replica-room2-v4.jpg" aria-labelledby="room2-title" aria-describedby="room2-caption">
             <source src="assets/comparisons/replica-room2-v4.mp4" type="video/mp4">
             <p>Your browser cannot play this video. <a href="assets/comparisons/replica-room2-v4.mp4">Open the Room 2 comparison.</a></p>
           </video>
-          <figcaption id="room2-caption"><p>Compare the relation links as the scene rotates. Relation Belief Fusion combines per-view predictions using reliability weights and a discount for repeated viewpoints.</p><a href="assets/comparisons/replica-room2-v4.mp4">Open full-size video ↗</a></figcaption>
+          <figcaption id="room2-caption">
+            <ul class="watch-points"><li><strong>Chair instances:</strong> compare the physical chairs with their graph nodes.</li><li><strong>Table–chair relations:</strong> inspect missing links between nearby objects.</li><li><strong>Long-range arrows:</strong> check the endpoints, not just the number of edges.</li></ul>
+            <div class="video-actions"><a class="button secondary" href="assets/comparisons/replica-room2-v4.mp4" data-fullscreen="room2-video">View fullscreen ↗</a><span>Pause or use fullscreen to inspect individual relations.</span></div>
+            <details class="mobile-detail" open><summary>Enlarged still: chair nodes and relation links</summary><div class="detail-pair">
+              <div><a class="detail-crop crop-chair-left" href="assets/comparisons/replica-room2-v4.jpg" aria-label="Open the full Room 2 still to inspect FROSS chair relations"><img src="assets/comparisons/replica-room2-v4.jpg" width="2400" height="680" loading="lazy" alt="Enlarged FROSS chair and relation region from the comparison video's first frame."></a><b>FROSS</b></div>
+              <div><a class="detail-crop crop-chair-right" href="assets/comparisons/replica-room2-v4.jpg" aria-label="Open the full Room 2 still to inspect RECAP chair relations"><img src="assets/comparisons/replica-room2-v4.jpg" width="2400" height="680" loading="lazy" alt="Matching RECAP chair and relation region from the same comparison frame."></a><b>RECAP (Ours)</b></div>
+            </div></details>
+          </figcaption>
         </figure>
-        <p class="note">Press play to inspect each comparison; use fullscreen for small labels. These qualitative visualizations compare the complete systems. <a href="#comparisons">Annotated examples</a> explain the observed differences, and <a href="#results">controlled ablations</a> isolate the contributions of L1 and L2.</p>
+        <p class="note">These clips compare the complete systems. See the <a href="#l1">L1</a> and <a href="#l2">L2</a> examples for the mechanisms, and <a href="#results">controlled ablations</a> for their individual contributions.</p>
       </div>
     </section>
 
@@ -232,7 +268,7 @@
       <div class="wrap">
         <figure class="figure-shell">
           <a class="image-link" href="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure1-overview.png" target="_blank" rel="noopener" aria-label="Open the RECAP overview at full resolution in a new tab">
-            <img src="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure1-overview.png" width="2599" height="925" loading="lazy" decoding="async" alt="RECAP pipeline: offline supervision above five mapping and target-selection stages, from RGB keyframes to a persistent scene graph.">
+            <img src="assets/figures/figure1-overview.webp" width="2599" height="925" loading="lazy" decoding="async" alt="RECAP pipeline: offline supervision above five mapping and target-selection stages, from RGB keyframes to a persistent scene graph.">
           </a>
           <figcaption><strong>RECAP overview.</strong> Offline supervision adapts the compact observer and trains L1/L2. During mapping, observation and relation scoring share the same frozen compact-model weights. Select any figure to view it at full resolution.</figcaption>
         </figure>
@@ -246,59 +282,46 @@
       </div>
     </section>
 
-    <section class="soft" id="abstract">
-      <div class="wrap abstract-layout">
-        <div><span class="eyebrow">The idea</span><h2>Observations become<br>scene memory.</h2><p class="lede">Abstract</p></div>
+    <section class="soft abstract-section" id="abstract" aria-label="Paper abstract">
+      <div class="wrap">
+        <details><summary>Read the full abstract</summary>
         <div class="abstract-copy" id="paper-abstract">
           <p>We present RECAP, a framework for constructing persistent 3D semantic scene graphs that support natural-language object queries and robot navigation. Frame-wise predictions can represent the same object as multiple nodes and produce inconsistent relations, while repeated viewpoints can reinforce these errors. To obtain open-vocabulary scene observations, we fine-tune a compact vision–language model using structured pseudo-labels generated offline by a larger model. After mapping observations into 3D, Entity Consolidation (L1) uses learned cross-frame associations to form persistent entities while retaining view-specific object names.</p>
           <p>Relation Belief Fusion (L2) scores relations between these entities using the same frozen compact model, then aggregates multi-view predictions with learned reliability weights while discounting repeated viewpoints. Experiments on 3DSSG and zero-shot ReplicaSSG show higher relation recall than FROSS and DeWorldSG. With RGB-D inputs and ground-truth poses, the relative gains over DeWorldSG are 27.55% and 18.25% on the two datasets, respectively. Controlled ablations show reduced entity fragmentation and improved target selection for relational queries. Downstream evaluation examines query-selected goals through shortest-path endpoints on a ground-truth navigation mesh and physical-robot navigation through historical image goals in previously scanned environments.</p>
         </div>
+        </details>
       </div>
     </section>
 
     <section id="method">
       <div class="wrap">
-        <div class="section-head"><span class="eyebrow">Method</span><h2>Two updates. One persistent memory.</h2><p>A compact VLM supplies structured scene observations. L1 establishes consistent entity identities; L2 accumulates relation evidence at those persistent endpoints.</p></div>
-        <div class="method-grid">
-          <article class="module">
-            <span class="module-label">L1 · Identity across views</span><h3>Entity Consolidation</h3>
-            <figure class="figure-shell"><a class="image-link" href="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure2-l1.png" target="_blank" rel="noopener" aria-label="Open the L1 schematic at full resolution in a new tab"><img src="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure2-l1.png" width="1796" height="1128" loading="lazy" decoding="async" alt="L1 schematic: candidate generation, learned association, joint assignment, and persistent entities with retained name evidence."></a></figure>
-            <p>Repeated views can describe the same physical object with different names and partial geometry. L1 combines spatial, semantic, temporal, quality, and relational-context evidence to associate observations across frames.</p>
-            <p>Joint assignment handles compact objects; local plane alignment and footprint connectivity handle structural surfaces. Each entity retains distinct observed names for later language matching.</p>
-          </article>
-          <article class="module l2">
-            <span class="module-label">L2 · Evidence across views</span><h3>Relation Belief Fusion</h3>
-            <figure class="figure-shell"><a class="image-link" href="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure2-l2.png" target="_blank" rel="noopener" aria-label="Open the L2 schematic at full resolution in a new tab"><img src="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure2-l2.png" width="1796" height="1157" loading="lazy" decoding="async" alt="L2 schematic: geometric pair selection, frozen relation scoring, reliability and view-density weighting, and weighted log-opinion pooling."></a></figure>
-            <p>Geometry and joint visibility select ordered entity pairs. An additional call to the shared, frozen VLM scores each pair over a task-specific predicate set, including <code>NONE</code>.</p>
-            <p>Learned reliability weights reduce the influence of poor observations, while view-density discounting limits repeated viewpoints. A weighted log-opinion pool produces each pair’s persistent relation distribution.</p>
-          </article>
-        </div>
-        <p class="method-note"><strong>Observation and supervision.</strong> RECAP samples one in five RGB frames. Structured pseudo-label SFT adapts Qwen3-VL-2B-Instruct; SAM3 masks support 3D lifting. RGB geometry comes from VGGT-Ω with Depth Anything 3 scale alignment. L1 and L2 use 3DSSG instance and relation supervision, respectively. Object names remain open vocabulary; relation scoring uses a fixed task-specific codebook.</p>
-      </div>
-    </section>
-
-    <section class="soft" id="comparisons">
-      <div class="wrap">
-        <div class="section-head"><span class="eyebrow">Qualitative comparisons</span><h2>What changes in the scene graph?</h2><p>Examples from Replica illustrate how persistent identity and multi-view relation fusion address different failure modes.</p></div>
-        <div class="comparison-row">
-          <figure class="figure-shell">
-            <a class="image-link" href="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure3-entity-comparison.png" target="_blank" rel="noopener" aria-label="Open the entity comparison at full resolution in a new tab"><img src="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure3-entity-comparison.png" width="1795" height="1455" loading="lazy" decoding="async" alt="Replica comparison: FROSS retains a bed-corner fragment labeled pillow at the top; RECAP consolidates the bed into a persistent entity below."></a>
-            <figcaption><strong>Entity Consolidation on Replica.</strong> FROSS above; RECAP below.</figcaption>
-          </figure>
-          <div>
-            <span class="module-label">Consistent entity identity</span><h3>One bed, across partial views.</h3>
-            <p>FROSS’s same-class association rule leaves a bed-corner observation labeled “pillow” separate from the bed. RECAP combines geometric, semantic, and temporal evidence to consolidate observations with inconsistent names into a persistent entity.</p>
-            <div class="stats-pair"><div><div class="big-stat">45.6%</div><div class="stat-caption">less compact-object fragmentation</div></div><div><div class="big-stat">76.2%</div><div class="stat-caption">less surface fragmentation</div></div></div>
-            <p class="note">3DSSG controlled L1 ablation, relative to FROSS-style association with shared observations and semantic readout. False merges increase from 3.11% to 4.04%; full results are below.</p>
+        <div class="section-head"><span class="eyebrow">Method and evidence</span><h2>Keep identities. Accumulate relation evidence.</h2><p>L1 associates repeated observations with persistent entities. L2 combines relation predictions at those shared endpoints.</p></div>
+        <article class="module" id="l1">
+          <span class="module-label">L1 · Entity Consolidation</span><h3>One object, across partial views.</h3>
+          <div class="method-grid">
+            <div>
+              <figure class="figure-shell"><a class="image-link" href="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure2-l1.png" target="_blank" rel="noopener" aria-label="Open the L1 schematic at full resolution in a new tab"><img src="assets/figures/figure2-l1.webp" width="1796" height="1128" loading="lazy" decoding="async" alt="L1 schematic: candidate generation, learned association, joint assignment, and persistent entities with retained name evidence."></a></figure>
+              <p>Partial views produce different shapes and names for the same object. L1 combines geometric, semantic, temporal, quality, and relational-context evidence to associate them. Local surface continuity handles walls and floors; retained names support later language queries.</p>
+              <p class="mechanism-result"><strong>Compact-object fragmentation: 2.83 → 1.54.</strong><br>A 45.6% reduction in the controlled 3DSSG L1 ablation, relative to FROSS-style association with shared observations and readout. <a href="#l1-results">See the full trade-off.</a></p>
+            </div>
+            <figure class="figure-shell" id="comparisons">
+              <a class="image-link" href="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure3-entity-comparison.png" target="_blank" rel="noopener" aria-label="Open the entity comparison at full resolution in a new tab"><img src="assets/figures/figure3-entity-comparison.webp" width="1795" height="1455" loading="lazy" decoding="async" alt="Replica comparison: FROSS retains a bed-corner fragment labeled pillow at the top; RECAP consolidates the bed into a persistent entity below."></a>
+              <figcaption><strong>Why the bed fragments.</strong> FROSS's same-class association leaves the pillow-labeled corner separate from the bed. RECAP combines spatial and semantic evidence to consolidate inconsistent observations into a persistent entity. FROSS above; RECAP (Ours) below.</figcaption>
+            </figure>
           </div>
-        </div>
-        <div class="comparison-relations">
-          <div class="comparison-intro"><div><span class="module-label">Selective relation evidence</span><h3>Recover missed relations.<br>Limit repeated errors.</h3></div><p>FROSS shows spurious ceiling-light links and missing table–chair relations. Relation Belief Fusion rescores geometrically eligible pairs, including those without an initial relation statement, then weights observations by reliability and discounts repeated views.</p></div>
-          <figure class="figure-shell">
-            <a class="image-link" href="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure4-relation-comparison.png" target="_blank" rel="noopener" aria-label="Open the relation comparison at full resolution in a new tab"><img src="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure4-relation-comparison.png" width="2198" height="618" loading="lazy" decoding="async" alt="Replica relation comparison with missed and spurious relations highlighted: FROSS on the left and RECAP on the right."></a>
-            <figcaption><strong>Relation Belief Fusion on Replica.</strong> FROSS (left) and RECAP (right), with missing and spurious links highlighted.</figcaption>
-          </figure>
-        </div>
+        </article>
+        <article class="module l2" id="l2">
+          <span class="module-label">L2 · Relation Belief Fusion</span><h3>Recover missing links. Limit repeated errors.</h3>
+          <div class="method-grid">
+            <figure class="figure-shell"><a class="image-link" href="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure2-l2.png" target="_blank" rel="noopener" aria-label="Open the L2 schematic at full resolution in a new tab"><img src="assets/figures/figure2-l2.webp" width="1796" height="1157" loading="lazy" decoding="async" alt="L2 schematic: geometric pair selection, frozen relation scoring, reliability and view-density weighting, and weighted log-opinion pooling."></a></figure>
+            <div>
+              <p>Geometry and joint visibility select ordered entity pairs, including pairs without an initial relation statement. The shared frozen VLM scores each pair; learned reliability weights and view-density discounting control how its predictions accumulate.</p>
+              <figure class="figure-shell"><a class="image-link" href="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure4-relation-comparison.png" target="_blank" rel="noopener" aria-label="Open the relation comparison at full resolution in a new tab"><img src="assets/figures/figure4-relation-comparison.webp" width="2198" height="618" loading="lazy" decoding="async" alt="Replica relation comparison with missed and spurious relations highlighted: FROSS on the left and RECAP on the right."></a><figcaption><strong>Inspect missing and spurious relations.</strong> FROSS shows ceiling-light links and misses table–chair relations. Pair rescoring lets L2 recover omitted evidence; reliability weighting and view discounting limit poor and repeated observations. FROSS left; RECAP (Ours) right.</figcaption></figure>
+              <p class="mechanism-result"><strong>Relational target accuracy: 31.84% → 38.79%.</strong><br>Majority vote versus full L2 on Replica queries, with full-L1 endpoints and per-view predictions fixed. <a href="#l2-results">See the controlled ablation.</a></p>
+            </div>
+          </div>
+        </article>
+        <details><summary>Observation model and supervision</summary><div class="detail-body"><p>RECAP samples one in five RGB frames. Structured pseudo-label SFT adapts Qwen3-VL-2B-Instruct; SAM3 masks support 3D lifting. RGB geometry comes from VGGT-Ω with Depth Anything 3 scale alignment. L1 and L2 use 3DSSG instance and relation supervision, respectively. Object names remain open vocabulary; relation scoring uses a fixed task-specific codebook including NONE.</p></div></details>
       </div>
     </section>
 
@@ -340,7 +363,7 @@
               <p>The audit contains 8,339 object-answerable images, including 8,256 relation-answerable images. All variants use the same format repair and single retry at temperature 0.6. Reported metrics use final outputs after this procedure.</p>
             </div>
           </details>
-          <details>
+          <details id="l1-results">
             <summary>L1 · persistent entities and correct-instance selection</summary>
             <div class="detail-body">
               <p>All variants share observations, geometry, and max-prototype semantic readout. Fragmentation counts predicted entities per represented GT instance (ideal: 1). False merge measures parents containing multiple GT identities; correct instance@1 measures object-query target selection.</p>
@@ -352,7 +375,7 @@
               <p>Memory metrics use the 37-scan 3DSSG RGB-D setting; target accuracy uses the 120 Replica object queries. Both report unweighted scene means.</p>
             </div>
           </details>
-          <details>
+          <details id="l2-results">
             <summary>L2 · reliable aggregation and relational target selection</summary>
             <div class="detail-body">
               <p>Compared methods share full-L1 endpoints, the frozen scorer, per-view predictions, and geometry-only candidates. Presence F1 distinguishes a listed relation from <code>NONE</code>; relational target@1 counts correct subject selections over all relational queries.</p>
@@ -388,8 +411,23 @@
           <div class="section-head"><span class="eyebrow">Physical-robot evaluation</span><h2>From a language query<br>to a physical target.</h2><p>8 indoor environments · 80 distinct queries · 160 attempted episodes</p></div>
           <p>A teleoperated RGB scan builds the persistent scene memory and an ordered image map. MiniLM matches query phrases to retained entity names, with L2 disambiguating relational descriptions. The selected entity supplies a historical image goal for a frozen ViNT navigator. Depth observations provide obstacle protection during execution.</p>
         </div>
+        <blockquote class="robot-query" id="robot-query"><span>Query after the teleoperated scan</span>Find the white chair next to the computer monitor.</blockquote>
+        <div class="robot-demo">
+          <figure class="figure-shell">
+            <video id="robot-video" class="robot-video" controls muted playsinline preload="none" width="1138" height="720" poster="assets/robot/query-execution.jpg" aria-label="Robot executes the white-chair query, accelerated playback" aria-describedby="robot-clip-caption">
+              <source src="assets/robot/query-execution.mp4" type="video/mp4">
+              <p>Your browser cannot play this video. <a href="assets/robot/query-execution.mp4">Open the robot recording.</a></p>
+            </video>
+            <figcaption id="robot-clip-caption"><strong>Recorded execution · accelerated playback.</strong> After target selection, frozen ViNT follows the historical image goal. Depth observations provide obstacle protection.</figcaption>
+            <ol class="robot-flow"><li>Query</li><li>Selected entity</li><li>Historical image goal</li><li>Frozen ViNT</li></ol>
+          </figure>
+          <div class="robot-goals">
+            <figure><a class="image-link" href="assets/robot/selected-entity.webp" aria-label="Enlarge the selected entity and distractors"><img src="assets/robot/selected-entity.webp" width="968" height="712" loading="lazy" decoding="async" alt="The selected white chair outlined in green as Target A; other chair instances are marked as distractors."></a><figcaption><strong>Selected entity.</strong> The query resolves to the chair marked Target A.</figcaption></figure>
+            <figure><a class="image-link" href="assets/robot/historical-goal.webp" aria-label="Enlarge the historical image goal"><img src="assets/robot/historical-goal.webp" width="884" height="884" loading="lazy" decoding="async" alt="Historical image of the selected white chair beside the computer monitor, used as the navigation goal."></a><figcaption><strong>Historical image goal.</strong> A stored observation supplies the navigator's target image.</figcaption></figure>
+          </div>
+        </div>
         <figure class="figure-shell">
-          <a class="image-link" href="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure5-physical-robot.png" target="_blank" rel="noopener" aria-label="Open the physical-robot example at full resolution in a new tab"><img src="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure5-physical-robot.png" width="2599" height="751" loading="lazy" decoding="async" alt="One physical query episode: query and candidate objects, the selected entity and execution path, and the robot endpoint measured 0.72 meters from the intended object."></a>
+          <a class="image-link" href="https://github.com/3DAgentWorld/RECAP/releases/download/paper-assets/figure5-physical-robot.png" target="_blank" rel="noopener" aria-label="Open the physical-robot example at full resolution in a new tab"><img src="assets/figures/figure5-physical-robot.webp" width="2599" height="751" loading="lazy" decoding="async" alt="One physical query episode: query and candidate objects, the selected entity and execution path, and the robot endpoint measured 0.72 meters from the intended object."></a>
           <figcaption><strong>One query, from selection to arrival.</strong> The three panels show the same episode. The endpoint is 0.72 m from the intended target by laser measurement.</figcaption>
         </figure>
         <div class="robot-stats">
@@ -404,5 +442,26 @@
     <section class="release" id="code"><div class="wrap release-inner"><div><h2>Code coming soon.</h2><p>The official RECAP repository is hosted at 3DAgentWorld.</p></div><a class="button secondary" href="https://github.com/3DAgentWorld/RECAP">Visit the repository <span aria-hidden="true">↗</span></a></div></section>
   </main>
   <footer><div class="wrap footer-inner"><span>RECAP · Relational Evidence Capture and Pooling</span><span>Project page maintained by <a href="https://github.com/uprightderran">Ziran Yin</a>.</span></div></footer>
+  <script>
+    document.querySelectorAll('[data-fullscreen]').forEach(link => {
+      link.addEventListener('click', async event => {
+        const video = document.getElementById(link.dataset.fullscreen);
+        if (!video || (!video.requestFullscreen && !video.webkitEnterFullscreen)) return;
+        event.preventDefault();
+        try {
+          if (video.requestFullscreen) await video.requestFullscreen();
+          else video.webkitEnterFullscreen();
+        } catch {
+          location.assign(link.href);
+        }
+      });
+    });
+    function revealLinkedDetails() {
+      const target = document.getElementById(location.hash.slice(1));
+      if (target?.tagName === 'DETAILS') target.open = true;
+    }
+    addEventListener('hashchange', revealLinkedDetails);
+    revealLinkedDetails();
+  </script>
 </body>
 </html>
